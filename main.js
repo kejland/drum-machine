@@ -1,9 +1,9 @@
 // Setup 'tick' sound
 const tick = new Audio('sounds/tick.mp3');
 let tock = new Audio("sounds/tock.mp3");
-let hit = new Audio("sound/hi-hat.mp3");
-let snare = new Audio("sound/snare-drum.mp3");
-let kick = new Audio("sound/snare-drum.mp3");
+let hit = new Audio("sounds/hi-hat.mp3");
+let snare = new Audio("sounds/snare-drum.mp3");
+let kick = new Audio("sounds/kick-drum.mp3");
 
 let beatFour = 0;
 let counter = document.querySelector("#count");
@@ -16,23 +16,72 @@ let snareDrum = document.querySelector("#snare-drum");
 
 metronome.checked = true;
 
-
+//let count = 0;
 // This function is called every 600ms
 function update() {
 
     beatFour++;
     counter.innerText = beatFour;
 
-    if (beatFour%4 === 0){
-        tock.play();
-    } else {
-        // Play the 'tick' sound
-        tick.play();
+    if (hiHat.checked === true){
+        if (beatFour === 1 || beatFour === 2 || beatFour === 3 || beatFour === 4){
+            hit.play();
+        }
     }
 
-    if (beatFour === 4){
-        beatFour = 0;
+    if (snareDrum.checked === true){
+        if (beatFour === 1 || beatFour === 2 || beatFour === 3 || beatFour === 4){
+            snare.play();
+        }
     }
+
+    if (kickDrum.checked === true){
+        if (beatFour === 1 || beatFour === 2 || beatFour === 3 || beatFour === 4){
+            kick.play();
+        }
+    }
+
+    if (metronome.checked === true){
+
+        if (beatFour%4 === 0){
+            tock.play();
+        } else {
+            // Play the 'tick' sound
+            tick.play();
+        }
+    
+        if (beatFour === 4){
+            beatFour = 0;
+        }
+    } else if (metronome.checked === false){
+        if (beatFour === 4){
+            beatFour = 0;
+        }
+    }
+
+    // count++;
+    // let metronomeCount = (count % 4) + 1;
+
+
+
+    // if (hiHat.checked === true){
+
+    //     let timingInput = document.querySelector("#hi-hat");
+
+    //     if (Number(timingInput.value) === metronomeCount){
+    //         hit.play();
+    //     }
+
+    //     // if ()
+        
+    // }
+
+    // if (kickDrum.checked){
+    //     if (counter === beatFour){
+    //         kick.play();
+    //     }
+    // }
+
 
 }
 
